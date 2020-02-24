@@ -63,32 +63,29 @@ def saveToGalerry():
     saved()
 
 def downloading():
-    if isOnHomePage():
-        return
-
     print("Procurando downloading")
-    tentativas = 5
-    downloadingAchado = False
-    while tentativas > 0 and downloadingAchado == False:
-        print("Tentativa:", tentativas)
-        element = pyautogui.locateOnScreen('downloading.png', grayscale = True, confidence=.8)
-        if element != None:
-            downloadingAchado = True
 
-        tentativas -= 1
+    contador = 5
+    donwloadingOBJ = pyautogui.locateOnScreen('downloading.png', grayscale = True, confidence=.9)
+    while donwloadingOBJ == None and contador > 0:
         time.sleep(1)
+        donwloadingOBJ = pyautogui.locateOnScreen('downloading.png', grayscale = True, confidence=.9)
+        contador -= 1
 
+    if donwloadingOBJ != None:
+        print("Downloading achado. Esperando terminar...")
+
+        contador = 120
+        donwloadingOBJ = pyautogui.locateOnScreen('downloading.png', grayscale = True, confidence=.9)
+        while donwloadingOBJ != None and contador > 0:
+            time.sleep(1)
+            donwloadingOBJ = pyautogui.locateOnScreen('downloading.png', grayscale = True, confidence=.9)
+            contador -= 1
+        print("Download terminado em", 120 - contador, "tentativas.")
+    print("Download terminado. Prosseguindo...")
     time.sleep(2)
-    tentativas = 120
-    while tentativas > 0:
-        element = pyautogui.locateOnScreen('downloading.png', grayscale = True, confidence=.8)
-        if element == None:
-            break
-        print("downloading Achado. Esperando...")
-        tentativas -= 1
-        time.sleep(1)
-    time.sleep(2)
-    saveToGalerry()
+    # saveToGalerry()
+    print("SAVETOGALERRY")
 
 
 def unlock():
@@ -112,8 +109,7 @@ def unlock():
     time.sleep(0.5)
     pyautogui.click(buttonx, buttony)
     time.sleep(0.5)
-    # downloading()
-    print("DOWNLOADING")
+    downloading()
 
 def unlockForFree():
     if not isLocked():
