@@ -166,6 +166,30 @@ def lock():
     time.sleep(2)
     unlockForFree()
 
+def centralizeAndFocus():
+    print("Procurando goBackArrow")
+    arrow = pyautogui.locateOnScreen('goBackArrow.png', grayscale = True, confidence=.9)
+    if arrow == None:
+        time.sleep(1)
+        print("goBackArrow não achado")
+        goBackArrow()
+        return
+
+    print("goBackArrow achado")
+    buttonx, buttony = pyautogui.center(arrow)
+    pyautogui.moveTo(buttonx + 200, buttony + 250)
+    time.sleep(0.5)
+    pyautogui.click(buttonx + 200, buttony + 250)
+    time.sleep(1)
+    # lock()
+
+def isLocked():
+    setWallPaper = pyautogui.locateOnScreen('setWallPaper.png', grayscale = True, confidence=.95)
+    if setWallPaper != None:
+        return False
+    else:
+        return True
+
 def isOnHomePage():
     element2 = pyautogui.locateOnScreen('popular.png', grayscale = True, confidence=.95)
     if element2 == None:
@@ -180,9 +204,9 @@ def isOnImagePage():
     else:
         return True
 
-
 print("Iniciando Programa...")
 time.sleep(4)
 print("Programa Iniciado")
-lock()
+centralizeAndFocus()
+# lock()
 # saved()
