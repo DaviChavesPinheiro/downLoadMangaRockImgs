@@ -34,43 +34,43 @@ def goBackArrow():
     goBackArrow()
 
 def saved():
-    if isOnHomePage():
-        return
+    print("Procurando Saved")
 
-    print("Procurando saved")
-    tentativas = 5
-    savedAchado = False
-    while tentativas > 0 and savedAchado == False:
-        print("Tentativa:", 5 - tentativas + 1)
-        element = pyautogui.locateOnScreen('saved.png', grayscale = True, confidence=.8)
-        if element != None:
-            savedAchado = True
-        tentativas -= 1
-        time.sleep(0.5)
-    time.sleep(1.5)
-    global imagensBaixadas
-    imagensBaixadas = imagensBaixadas + 1
-    print("-------IMAGENS BAIXADAS:", imagensBaixadas, "------------")
-    goBackArrow()
-
-def saveToGalerry():
-    if isOnHomePage():
-        return
-
-    print("Procurando saveToGalerry")
-    element = pyautogui.locateOnScreen('saveToGalerry.png', grayscale = True, confidence=0.9)
-    print(element)
-    if element == None:
+    contador = 10
+    savedOBJ = pyautogui.locateOnScreen('saved.png', grayscale = True, confidence=.9)
+    while savedOBJ == None and contador > 0:
+        time.sleep(0.2)
+        savedOBJ = pyautogui.locateOnScreen('saved.png', grayscale = True, confidence=.9)
+        contador -= 1
+    if savedOBJ == None:
+        print("Não foi possivel salvar. Tentando novamente...")
         time.sleep(1)
         saveToGalerry()
         return
 
-    print("saveToGalerry Achado")
-    buttonx, buttony = pyautogui.center(element)
+    print("Salvado com sucesso. Voltando para o menu")
+    goBackArrow()
+
+def saveToGalerry():
+    print("Procurando SaveToGalerry")
+
+    contador = 5
+    saveToGalerryOBJ = pyautogui.locateOnScreen('saveToGalerry.png', grayscale = True, confidence=.9)
+    while saveToGalerryOBJ == None and contador > 0:
+        time.sleep(1)
+        saveToGalerryOBJ = pyautogui.locateOnScreen('saveToGalerry.png', grayscale = True, confidence=.9)
+        contador -= 1
+    if saveToGalerryOBJ == None:
+        print("Não foi possivel achar o SaveToGalerry. Reiniciando...")
+        time.sleep(1)
+        goBackArrow()
+        return
+
+    print("SaveToGalerry Achado")
+    buttonx, buttony = pyautogui.center(saveToGalerryOBJ)
     pyautogui.moveTo(buttonx, buttony)
-    time.sleep(2)
+    time.sleep(0.5)
     pyautogui.click(buttonx, buttony)
-    time.sleep(2)
     saved()
 
 def downloading():
