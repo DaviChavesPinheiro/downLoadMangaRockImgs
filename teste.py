@@ -100,7 +100,7 @@ def unlock():
     if unlockOnly == None:
         print("Não foi possivel achar o Unlock. Reiniciando...")
         time.sleep(1)
-        centralizeAndFocus()
+        centralize()
         return
 
     print("unlock Achado")
@@ -131,7 +131,7 @@ def unlockForFree():
     if unlockForF == None:
         print("Não foi possivel achar o UnlockForFree. Reiniciando...")
         time.sleep(1)
-        centralizeAndFocus()
+        centralize()
         return
 
     print("UnlockForFree Achado")
@@ -150,7 +150,7 @@ def unlockForFree():
     if unlockOnly == None:
         print("Não foi possivel achar o Unlock. Reiniciando...")
         time.sleep(1)
-        centralizeAndFocus()
+        centralize()
         return
     time.sleep(1)
     unlock()
@@ -182,23 +182,22 @@ def unlockForFree():
 #     unlockForFree()
 
 
-
-def centralizeAndFocus():
-    print("Procurando goBackArrow")
-    arrow = pyautogui.locateOnScreen('goBackArrow.png', grayscale = True, confidence=.9)
-    if arrow == None:
+def centralize():
+    print("Centralizando")
+    popular = pyautogui.locateOnScreen('popular.png', grayscale = True, confidence=.9)
+    if popular == None:
         time.sleep(1)
-        print("goBackArrow não achado")
-        goBackArrow()
+        print("Popular não achado")
+        centralize()
         return
 
-    print("goBackArrow achado")
-    buttonx, buttony = pyautogui.center(arrow)
-    pyautogui.moveTo(buttonx + 200, buttony + 100)
+    print("Popular achado")
+    buttonx, buttony = pyautogui.center(popular)
+    pyautogui.moveTo(buttonx, buttony)
     time.sleep(0.5)
-    pyautogui.click(buttonx + 200, buttony + 100)
+    pyautogui.click(buttonx, buttony)
     time.sleep(1)
-    unlockForFree()
+    # unlockForFree()
 
 def isLocked():
     setWallPaper = pyautogui.locateOnScreen('setWallPaper.png', grayscale = True, confidence=.95)
@@ -224,6 +223,6 @@ def isOnImagePage():
 print("Iniciando Programa...")
 time.sleep(4)
 print("Programa Iniciado")
-centralizeAndFocus()
+centralize()
 # lock()
 # saved()
