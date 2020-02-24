@@ -4,23 +4,34 @@ import time
 imagensBaixadas = 222
 
 def goBackArrow():
-    # if isOnHomePage():
-    #     return
-    
-    print("Procurando goBackArrow")
-    element = pyautogui.locateOnScreen('goBackArrow.png', grayscale = True, confidence=.9)
-    print(element)
-    if element == None:
-        time.sleep(2)
-        goBackArrow()
+    if isOnHomePage():
+        centralize()
         return
 
-    print("goBackArrow Achado")
-    buttonx, buttony = pyautogui.center(element)
+    print("Procurando goBackArrow")
+
+    contador = 5
+    goBackArrowOBJ = pyautogui.locateOnScreen('goBackArrow.png', grayscale = True, confidence=.9)
+    while goBackArrowOBJ == None and contador > 0:
+        time.sleep(1)
+        goBackArrowOBJ = pyautogui.locateOnScreen('unlock.png', grayscale = True, confidence=.9)
+        contador -= 1
+    if goBackArrowOBJ == None:
+        print("Não foi possivel achar o GoBackArrow. Reiniciando...")
+        time.sleep(1)
+        centralize()
+        return
+
+
+    
+    print("GoBackArrow achado")
+
+    buttonx, buttony = pyautogui.center(goBackArrowOBJ)
     pyautogui.moveTo(buttonx, buttony)
     time.sleep(0.5)
     pyautogui.click(buttonx, buttony)
-    time.sleep(3)
+    time.sleep(2)
+    goBackArrow()
 
 def saved():
     if isOnHomePage():
@@ -100,7 +111,7 @@ def unlock():
     if unlockOnly == None:
         print("Não foi possivel achar o Unlock. Reiniciando...")
         time.sleep(1)
-        centralize()
+        goBackArrow()
         return
 
     print("unlock Achado")
@@ -109,7 +120,8 @@ def unlock():
     time.sleep(0.5)
     pyautogui.click(buttonx, buttony)
     time.sleep(0.5)
-    downloading()
+    # downloading()
+    print("downloading....................")
 
 def unlockForFree():
     if not isLocked():
@@ -230,8 +242,8 @@ def isLocked():
         return True
 
 def isOnHomePage():
-    element2 = pyautogui.locateOnScreen('popular.png', grayscale = True, confidence=.95)
-    if element2 == None:
+    popularButton = pyautogui.locateOnScreen('popular.png', grayscale = True, confidence=.95)
+    if popularButton == None:
         return False
     else:
         return True
