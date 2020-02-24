@@ -4,8 +4,8 @@ import time
 imagensBaixadas = 222
 
 def goBackArrow():
-    if isOnHomePage():
-        return
+    # if isOnHomePage():
+    #     return
     
     print("Procurando goBackArrow")
     element = pyautogui.locateOnScreen('goBackArrow.png', grayscale = True, confidence=.9)
@@ -113,10 +113,9 @@ def unlock():
 
 def unlockForFree():
     if not isLocked():
-        print("Esta imagem já esta desbloqueada, mudando para proxima...")
-        pyautogui.press('right')
+        print("Esta imagem já esta desbloqueada, voltando para o inicio...")
         time.sleep(0.7)
-        unlockForFree()
+        goBackArrow()
         return
 
     print("Procurando UnlockForFree")
@@ -129,9 +128,9 @@ def unlockForFree():
         contador -= 1
 
     if unlockForF == None:
-        print("Não foi possivel achar o UnlockForFree. Reiniciando...")
+        print("Não foi possivel achar o UnlockForFree. Voltando para o inicio...")
         time.sleep(1)
-        centralize()
+        goBackArrow()
         return
 
     print("UnlockForFree Achado")
@@ -148,9 +147,9 @@ def unlockForFree():
         unlockOnly = pyautogui.locateOnScreen('unlock.png', grayscale = True, confidence=.9)
         contador -= 1
     if unlockOnly == None:
-        print("Não foi possivel achar o Unlock. Reiniciando...")
+        print("Não foi possivel achar o Unlock. Voltando para o inicio...")
         time.sleep(1)
-        centralize()
+        goBackArrow()
         return
     time.sleep(1)
     unlock()
@@ -202,7 +201,7 @@ def clickOnNextImage():
     time.sleep(0.5)
     pyautogui.click(buttonx, buttony)
     time.sleep(2)
-    # unlockForFree()
+    unlockForFree()
 
 def centralize():
     print("Centralizando")
