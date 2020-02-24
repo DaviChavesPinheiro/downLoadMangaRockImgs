@@ -181,6 +181,28 @@ def unlockForFree():
 #     time.sleep(2)
 #     unlockForFree()
 
+def clickOnNextImage():
+    print("Procurando por proxima imagem")
+    lock = pyautogui.locateOnScreen('lock.png', grayscale = True, confidence=.95)
+    if lock == None:
+        print("Nenhuma imagem encontrada. Rolando para baixo...")
+        pyautogui.scroll(-1)
+        time.sleep(1)
+        clickOnNextImage()
+        return
+    print("Imagem encontrada")
+    buttonx, buttony = pyautogui.center(lock)
+    if buttony > 950:
+        print("A Imagem esta muito abaixo. Rolando para baixo...")
+        pyautogui.scroll(-1)
+        time.sleep(1)
+        clickOnNextImage()
+        return
+    pyautogui.moveTo(buttonx, buttony)
+    time.sleep(0.5)
+    pyautogui.click(buttonx, buttony)
+    time.sleep(2)
+    # unlockForFree()
 
 def centralize():
     print("Centralizando")
@@ -196,8 +218,10 @@ def centralize():
     pyautogui.moveTo(buttonx, buttony)
     time.sleep(0.5)
     pyautogui.click(buttonx, buttony)
+    time.sleep(0.5)
+    pyautogui.moveTo(buttonx, buttony + 100)
     time.sleep(1)
-    # unlockForFree()
+    clickOnNextImage()
 
 def isLocked():
     setWallPaper = pyautogui.locateOnScreen('setWallPaper.png', grayscale = True, confidence=.95)
