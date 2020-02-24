@@ -118,53 +118,76 @@ def unlock():
     downloading()
 
 def unlockForFree():
-    if isOnHomePage():
-        lock()
-        return
-
-    print("Procurando UnlockForFree")
-    element = pyautogui.locateOnScreen('unlockForFree.png', grayscale = True, confidence=.8)
-    print(element)
-    if element == None:
-        element2 = pyautogui.locateOnScreen('setWallPaper.png', grayscale = True, confidence=.8)
-        if element2 != None:
-            goBackArrow()
-            return
-        time.sleep(1)
+    if not isLocked():
+        print("Esta imagem já esta desbloqueada, mudando para proxima...")
+        pyautogui.press('right')
+        time.sleep(0.7)
         unlockForFree()
         return
 
+    print("Procurando UnlockForFree")
+    unlockForF = pyautogui.locateOnScreen('unlockForFree.png', grayscale = True, confidence=.9)
+
+    contador = 5
+    while unlockForF == None and contador > 0:
+        time.sleep(1)
+        unlockForF = pyautogui.locateOnScreen('unlockForFree.png', grayscale = True, confidence=.9)
+        contador -= 1
+
+    if unlockForF == None:
+        print("Não foi possivel achar o UnlockForFree. Reiniciando...")
+        time.sleep(1)
+        centralizeAndFocus()
+        return
+
     print("UnlockForFree Achado")
-    buttonx, buttony = pyautogui.center(element)
+    buttonx, buttony = pyautogui.center(unlockForF)
     pyautogui.moveTo(buttonx, buttony)
     time.sleep(0.5)
     pyautogui.click(buttonx, buttony)
-    unlock()
 
-def lock():
-    print("Procurando Lock")
-    pyautogui.moveTo(550, 550)
-    element = pyautogui.locateOnScreen('lock.png', grayscale = True, confidence=.95)
-    print(element)
-    if element == None:
-        pyautogui.scroll(-1)
+    contador = 5
+    unlockOnly = pyautogui.locateOnScreen('unlock.png', grayscale = True, confidence=.9)
+    while unlockOnly == None and contador > 0:
         time.sleep(1)
-        lock()
+        pyautogui.click(buttonx, buttony)
+        unlockOnly = pyautogui.locateOnScreen('unlock.png', grayscale = True, confidence=.9)
+        contador -= 1
+    if unlockOnly == None:
+        print("Não foi possivel achar o Unlock. Reiniciando...")
+        time.sleep(1)
+        centralizeAndFocus()
         return
 
-    buttonx, buttony = pyautogui.center(element)
-    if buttony > 950:
-        print("Lock Muito Abaixo")
-        pyautogui.scroll(-1)
-        time.sleep(1)
-        lock()
-        return
-    print("Lock Achado")
-    pyautogui.moveTo(buttonx, buttony)
-    time.sleep(0.5)
-    pyautogui.click(buttonx, buttony)
-    time.sleep(2)
-    unlockForFree()
+    # unlock()
+    print("UNLOCK")
+
+# def lock():
+#     print("Procurando Lock")
+#     pyautogui.moveTo(550, 550)
+#     element = pyautogui.locateOnScreen('lock.png', grayscale = True, confidence=.95)
+#     print(element)
+#     if element == None:
+#         pyautogui.scroll(-1)
+#         time.sleep(1)
+#         lock()
+#         return
+
+#     buttonx, buttony = pyautogui.center(element)
+#     if buttony > 950:
+#         print("Lock Muito Abaixo")
+#         pyautogui.scroll(-1)
+#         time.sleep(1)
+#         lock()
+#         return
+#     print("Lock Achado")
+#     pyautogui.moveTo(buttonx, buttony)
+#     time.sleep(0.5)
+#     pyautogui.click(buttonx, buttony)
+#     time.sleep(2)
+#     unlockForFree()
+
+
 
 def centralizeAndFocus():
     print("Procurando goBackArrow")
@@ -177,11 +200,11 @@ def centralizeAndFocus():
 
     print("goBackArrow achado")
     buttonx, buttony = pyautogui.center(arrow)
-    pyautogui.moveTo(buttonx + 200, buttony + 250)
+    pyautogui.moveTo(buttonx + 200, buttony + 100)
     time.sleep(0.5)
-    pyautogui.click(buttonx + 200, buttony + 250)
+    pyautogui.click(buttonx + 200, buttony + 100)
     time.sleep(1)
-    # lock()
+    unlockForFree()
 
 def isLocked():
     setWallPaper = pyautogui.locateOnScreen('setWallPaper.png', grayscale = True, confidence=.95)
