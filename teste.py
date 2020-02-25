@@ -185,32 +185,6 @@ def unlockForFree():
     time.sleep(1)
     unlock()
 
-
-# def lock():
-#     print("Procurando Lock")
-#     pyautogui.moveTo(550, 550)
-#     element = pyautogui.locateOnScreen('lock.png', grayscale = True, confidence=.95)
-#     print(element)
-#     if element == None:
-#         pyautogui.scroll(-1)
-#         time.sleep(1)
-#         lock()
-#         return
-
-#     buttonx, buttony = pyautogui.center(element)
-#     if buttony > 950:
-#         print("Lock Muito Abaixo")
-#         pyautogui.scroll(-1)
-#         time.sleep(1)
-#         lock()
-#         return
-#     print("Lock Achado")
-#     pyautogui.moveTo(buttonx, buttony)
-#     time.sleep(0.5)
-#     pyautogui.click(buttonx, buttony)
-#     time.sleep(2)
-#     unlockForFree()
-
 def clickOnNextImage():
     print("Procurando por proxima imagem")
     lock = pyautogui.locateOnScreen('lock.png', grayscale = True, confidence=.95)
@@ -267,16 +241,8 @@ def isOnHomePage():
     else:
         return True
 
-def isOnImagePage():
-    element3 = pyautogui.locateOnScreen('goBackArrow.png', grayscale = True, confidence=.8)
-    if element3 == None:
-        return False
-    else:
-        return True
 
 print("Iniciando Programa...")
 time.sleep(4)
 print("Programa Iniciado")
 centralize()
-# lock()
-# saved()
