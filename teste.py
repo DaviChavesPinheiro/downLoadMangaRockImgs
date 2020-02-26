@@ -10,11 +10,11 @@ def goBackArrow():
 
     print("Procurando goBackArrow")
 
-    contador = 5
-    goBackArrowOBJ = pyautogui.locateOnScreen('goBackArrow.png', grayscale = True, confidence=.9)
+    contador = 120
+    goBackArrowOBJ = pyautogui.locateOnScreen('goBackArrow.png', confidence=.9)
     while goBackArrowOBJ == None and contador > 0:
         time.sleep(1)
-        goBackArrowOBJ = pyautogui.locateOnScreen('unlock.png', grayscale = True, confidence=.9)
+        goBackArrowOBJ = pyautogui.locateOnScreen('goBackArrow.png', confidence=.9)
         contador -= 1
     if goBackArrowOBJ == None:
         print("Não foi possivel achar o GoBackArrow. Reiniciando...")
@@ -37,10 +37,10 @@ def saved():
     print("Procurando Saved")
 
     contador = 10
-    savedOBJ = pyautogui.locateOnScreen('saved.png', grayscale = True, confidence=.9)
+    savedOBJ = pyautogui.locateOnScreen('saved.png', confidence=.9)
     while savedOBJ == None and contador > 0:
         time.sleep(0.2)
-        savedOBJ = pyautogui.locateOnScreen('saved.png', grayscale = True, confidence=.9)
+        savedOBJ = pyautogui.locateOnScreen('saved.png', confidence=.9)
         contador -= 1
     if savedOBJ == None:
         print("Não foi possivel salvar. Tentando novamente...")
@@ -55,10 +55,10 @@ def saveToGalerry():
     print("Procurando SaveToGalerry")
 
     contador = 5
-    saveToGalerryOBJ = pyautogui.locateOnScreen('saveToGalerry.png', grayscale = True, confidence=.9)
+    saveToGalerryOBJ = pyautogui.locateOnScreen('saveToGalerry.png', confidence=.9)
     while saveToGalerryOBJ == None and contador > 0:
         time.sleep(1)
-        saveToGalerryOBJ = pyautogui.locateOnScreen('saveToGalerry.png', grayscale = True, confidence=.9)
+        saveToGalerryOBJ = pyautogui.locateOnScreen('saveToGalerry.png', confidence=.9)
         contador -= 1
     if saveToGalerryOBJ == None:
         print("Não foi possivel achar o SaveToGalerry. Reiniciando...")
@@ -76,21 +76,21 @@ def saveToGalerry():
 def downloading():
     print("Procurando Loading...")
     contador = 5
-    loadingOBJ = pyautogui.locateOnScreen('loading.png', grayscale = True, confidence=.9)
+    loadingOBJ = pyautogui.locateOnScreen('loading.png', confidence=.9)
     while loadingOBJ == None and contador > 0:
         time.sleep(0.5)
-        loadingOBJ = pyautogui.locateOnScreen('loading.png', grayscale = True, confidence=.9)
+        loadingOBJ = pyautogui.locateOnScreen('loading.png', confidence=.9)
         contador -= 1
 
 
     if loadingOBJ != None:
         print("Loading achado. Esperando terminar...")
 
-        contador = 120
-        loadingOBJ = pyautogui.locateOnScreen('loading.png', grayscale = True, confidence=.9)
+        contador = 500
+        loadingOBJ = pyautogui.locateOnScreen('loading.png', confidence=.9)
         while loadingOBJ != None and contador > 0:
             time.sleep(1)
-            loadingOBJ = pyautogui.locateOnScreen('loading.png', grayscale = True, confidence=.9)
+            loadingOBJ = pyautogui.locateOnScreen('loading.png', confidence=.9)
             contador -= 1
         print("Download terminado em", 120 - contador, "tentativas.")
 
@@ -99,20 +99,20 @@ def downloading():
     print("Procurando downloading")
 
     contador = 5
-    downloadingOBJ = pyautogui.locateOnScreen('downloading.png', grayscale = True, confidence=.9)
+    downloadingOBJ = pyautogui.locateOnScreen('downloading.png', confidence=.9)
     while downloadingOBJ == None and contador > 0:
         time.sleep(0.5)
-        downloadingOBJ = pyautogui.locateOnScreen('downloading.png', grayscale = True, confidence=.9)
+        downloadingOBJ = pyautogui.locateOnScreen('downloading.png', confidence=.9)
         contador -= 1
 
     if downloadingOBJ != None:
         print("Downloading achado. Esperando terminar...")
 
-        contador = 120
-        downloadingOBJ = pyautogui.locateOnScreen('downloading.png', grayscale = True, confidence=.9)
+        contador = 500
+        downloadingOBJ = pyautogui.locateOnScreen('downloading.png', confidence=.9)
         while downloadingOBJ != None and contador > 0:
             time.sleep(1)
-            downloadingOBJ = pyautogui.locateOnScreen('downloading.png', grayscale = True, confidence=.9)
+            downloadingOBJ = pyautogui.locateOnScreen('downloading.png', confidence=.9)
             contador -= 1
         print("Download terminado em", 120 - contador, "tentativas.")
     print("Download terminado. Prosseguindo...")
@@ -124,10 +124,10 @@ def unlock():
     print("Procurando unlock")
 
     contador = 5
-    unlockOnly = pyautogui.locateOnScreen('unlock.png', grayscale = True, confidence=.9)
+    unlockOnly = pyautogui.locateOnScreen('unlock.png', confidence=.9)
     while unlockOnly == None and contador > 0:
         time.sleep(1)
-        unlockOnly = pyautogui.locateOnScreen('unlock.png', grayscale = True, confidence=.9)
+        unlockOnly = pyautogui.locateOnScreen('unlock.png', confidence=.9)
         contador -= 1
     if unlockOnly == None:
         print("Não foi possivel achar o Unlock. Reiniciando...")
@@ -150,12 +150,12 @@ def unlockForFree():
         return
 
     print("Procurando UnlockForFree")
-    unlockForF = pyautogui.locateOnScreen('unlockForFree.png', grayscale = True, confidence=.9)
+    unlockForF = pyautogui.locateOnScreen('unlockForFree.png', confidence=.9)
 
     contador = 5
     while unlockForF == None and contador > 0:
         time.sleep(1)
-        unlockForF = pyautogui.locateOnScreen('unlockForFree.png', grayscale = True, confidence=.9)
+        unlockForF = pyautogui.locateOnScreen('unlockForFree.png', confidence=.9)
         contador -= 1
 
     if unlockForF == None:
@@ -171,11 +171,11 @@ def unlockForFree():
     pyautogui.click(buttonx, buttony)
     time.sleep(1)
     contador = 5
-    unlockOnly = pyautogui.locateOnScreen('unlock.png', grayscale = True, confidence=.9)
+    unlockOnly = pyautogui.locateOnScreen('unlock.png', confidence=.9)
     while unlockOnly == None and contador > 0:
         time.sleep(1)
         pyautogui.click(buttonx, buttony)
-        unlockOnly = pyautogui.locateOnScreen('unlock.png', grayscale = True, confidence=.9)
+        unlockOnly = pyautogui.locateOnScreen('unlock.png', confidence=.9)
         contador -= 1
     if unlockOnly == None:
         print("Não foi possivel achar o Unlock. Voltando para o inicio...")
@@ -187,7 +187,7 @@ def unlockForFree():
 
 def clickOnNextImage():
     print("Procurando por proxima imagem")
-    lock = pyautogui.locateOnScreen('lock.png', grayscale = True, confidence=.95)
+    lock = pyautogui.locateOnScreen('lock.png', confidence=.95)
     if lock == None:
         print("Nenhuma imagem encontrada. Rolando para baixo...")
         pyautogui.scroll(-1)
@@ -210,7 +210,7 @@ def clickOnNextImage():
 
 def centralize():
     print("Centralizando")
-    popular = pyautogui.locateOnScreen('popular.png', grayscale = True, confidence=.9)
+    popular = pyautogui.locateOnScreen('popular.png', confidence=.95)
     if popular == None:
         time.sleep(1)
         print("Popular não achado")
@@ -228,14 +228,14 @@ def centralize():
     clickOnNextImage()
 
 def isLocked():
-    setWallPaper = pyautogui.locateOnScreen('setWallPaper.png', grayscale = True, confidence=.95)
+    setWallPaper = pyautogui.locateOnScreen('setWallPaper.png', confidence=.95)
     if setWallPaper != None:
         return False
     else:
         return True
 
 def isOnHomePage():
-    popularButton = pyautogui.locateOnScreen('popular.png', grayscale = True, confidence=.95)
+    popularButton = pyautogui.locateOnScreen('popular.png', confidence=.95)
     if popularButton == None:
         return False
     else:
@@ -243,6 +243,6 @@ def isOnHomePage():
 
 
 print("Iniciando Programa...")
-time.sleep(4)
+time.sleep(1.5)
 print("Programa Iniciado")
 centralize()
